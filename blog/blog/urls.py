@@ -1,15 +1,17 @@
 from django.contrib import admin
-from django.urls import path
-from editor.views import editor_view
-from tag.views import tag_view
-from post.views import post_view
+from django.urls import path, include
+
+from editor.views import editor
+from tag.views import tag
+from post.views import post
 
 urlpatterns = [
-    path('app/post/', post_view),
-    path('app/tag/', tag_view),
-    path('app/editor/', editor_view),
-    path('post/', post_view),
-    path('tag/', tag_view),
-    path('editor/', editor_view),
+    path('admin/', admin.site.urls),
+    path("app/post/", post),
+    path('app/tag/', tag),
+    path('app/editor/', editor),
+    path('post/', include('post.urls')),
+    path('tag/', include('tag.urls')),
+    path('editor/', include('editor.urls')),
 ]
     
